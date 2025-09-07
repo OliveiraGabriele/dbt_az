@@ -1,0 +1,22 @@
+models:
+  - name: int_produtos
+    description: Tabela intermediaria para dar join entre as tabelas de produto e categoria do produto.
+    tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "unidade_em_estoque >= 0"
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - pk_produto
+              - ds_nome_produto
+    columns:
+      - name: pk_produto
+        description: Chave primaria do produto.
+        tests:
+          - not_null
+          - unique
+      - name: ds_nome_produto
+        description: Coluna com o nome do produto.
+      - name: unidade_em_estoque
+        description: Coluna com as informacoes de unidades em estoque.

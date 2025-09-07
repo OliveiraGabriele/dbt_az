@@ -1,0 +1,21 @@
+sources:
+  - name: nortwind
+    description: Tabela source com informacoes do database da nortwind.
+    database: dbt_az
+    schema: raw_northwind
+    tables:
+      - name: products
+        description: Tabela bruta com informacoes de produtos.
+        columns:
+         - name: id
+           tests:
+            - not_null
+            - unique            
+      - name: category
+        description: Tabela bruta com informacoes de produto.
+        columns:
+         - name: id
+           tests:
+            - not_null
+            - unique
+            
